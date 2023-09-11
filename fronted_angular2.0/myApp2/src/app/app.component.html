@@ -1,0 +1,42 @@
+<h1 style="text-align:center">
+  Bienvenido a {{ title }}
+	<br>
+	{{msg}}
+    <br>
+
+
+</h1>
+
+<section class="py-4 px-2">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Clave</th>
+          <th>Actions</th> <!-- Agregamos la columna Actions -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.id }}</td>
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.clave }}</td>
+          <td>
+            <button class="transparent-button" (click)="openConfirmationModal(usuario)">
+              <i class="fas fa-trash-alt"></i> <!-- Icono de Eliminar -->
+            </button>
+            <button class="transparent-button">
+              <i class="fas fa-edit"></i> <!-- Icono de Actualizar -->
+            </button>
+          </td>
+        </tr>
+        <!-- Renderiza el modal de confirmación si isConfirmationModalOpen es verdadero -->
+<app-confirmation-modal *ngIf="isConfirmationModalOpen" (onConfirmEvent)="confirmDeletion($event)">
+</app-confirmation-modal>
+      </tbody>
+    </table>
+  </div>
+</section>
+
